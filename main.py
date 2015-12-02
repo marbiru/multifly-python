@@ -1,4 +1,4 @@
-my_pick_list = [];
+my_pick_list = []
 
 for x in range(2,28):
 	my_pick_list.append([x,""])
@@ -26,14 +26,18 @@ def win_chance(my_pick):
 
     win_fraction = float(my_wins)/len(random_pick_list)
 
-    win_fraction = round(win_fraction, 2)
-    
     return win_fraction
+
+baseline_list = [0] * 26
+
+for x in range(2,28):
+    baseline_list[x-2] = win_chance(x)
 
 def calculate_probabilities():
 
     for x in range(2,28):
-       my_pick_list[x-2][1] = win_chance(x)
+       difference_from_baseline = win_chance(x) - baseline_list[x-2]
+       my_pick_list[x-2][1] = round(difference_from_baseline, 2)
 
     def sort_by_prob(s):
         return s[1]
