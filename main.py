@@ -12,7 +12,6 @@ def win_chance(my_pick):
     
     my_wins = 0
 
-    #instead of "range" this needs to use an list as its input and we pop
     for random_pick in random_pick_list:
         if random_pick == my_pick:
         	my_wins += 0.5
@@ -25,7 +24,11 @@ def win_chance(my_pick):
         elif random_pick < my_pick:
         	my_wins += 0
 
-    return my_wins
+    win_fraction = float(my_wins)/len(random_pick_list)
+
+    win_fraction = round(win_fraction, 2)
+    
+    return win_fraction
 
 def calculate_probabilities():
 
@@ -53,5 +56,3 @@ def main_function():
     main_function()
 
 main_function()
-
-
