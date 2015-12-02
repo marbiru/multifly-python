@@ -27,20 +27,31 @@ def win_chance(my_pick):
 
     return my_wins
 
-for x in range(2,28):
-   my_pick_list[x-2][1] = win_chance(x)
+def calculate_probabilities():
 
-def sort_by_prob(s):
-    return s[1]
+    for x in range(2,28):
+       my_pick_list[x-2][1] = win_chance(x)
 
-my_pick_list_sorted = sorted(my_pick_list, key=sort_by_prob, reverse=True)
+    def sort_by_prob(s):
+        return s[1]
 
-print my_pick_list_sorted
+    my_pick_list_sorted = sorted(my_pick_list, key=sort_by_prob, reverse=True)
 
-user_input = int(raw_input('Computer played [number]?\n'))
-  
-computers_last_move = random_pick_list.index(user_input)
+    print my_pick_list_sorted
 
-random_pick_list.pop(computers_last_move)
+def computers_move():
 
-print random_pick_list
+    user_input = int(raw_input('Computer played [number]?\n'))
+      
+    computers_last_move = random_pick_list.index(user_input)
+
+    random_pick_list.pop(computers_last_move)
+
+def main_function():
+    calculate_probabilities()
+    computers_move()
+    main_function()
+
+main_function()
+
+
