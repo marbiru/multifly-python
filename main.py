@@ -40,6 +40,11 @@ def calculate_probabilities():
        difference_from_baseline = win_chance(x) - my_pick_list[x-2][2]
        my_pick_list[x-2][1] = round(difference_from_baseline, 2)
 
+    try:
+        my_pick_list[25][1] += 0.00000001
+    except:
+        pass
+
     def sort_by_prob(s):
         return s[1]
 
@@ -51,7 +56,7 @@ def calculate_probabilities():
     print my_previous_moves
     print "\n Computer's previous moves:"
     print computers_previous_moves
-    print "\n Other options had differentials:"
+    print "\n Other options had differentials and baselines:"
     print my_pick_list_sorted[1:]
 
     my_previous_moves.append(my_pick_list_sorted[0][0])
@@ -89,6 +94,6 @@ def main_function():
     computers_move()
     main_function()
 
-print "\nWelcome to the Multifly Solver. The following list shows the current differential between each pick's baseline win-chance and current win-chance. Always choose the first number on the list as your next move -- the other options/probabilities are shown just for interest. Then, after each round, input what the computer just played and the Solver will recalculate probabilities. \n"
+print "\nWelcome to the Multifly Solver. I am unconvinced that this does better than chance at beating Multifly but I've largely lost interest in the problem so I'm not going to keep improving it. Sorrrrry \n\n The Solver tells you what to choose based on which choice has the highest differential between its baseline win-chance and current win-chance. After each round, input what the computer just played and the Solver will recalculate probabilities. \n"
 
 main_function()
