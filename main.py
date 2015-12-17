@@ -44,11 +44,14 @@ def calculate_probabilities():
 
     my_pick_list_sorted = sorted(my_pick_list, key=sort_by_prob, reverse=True)
 
-    print my_pick_list_sorted
+    print "Your next move:"
+    print my_pick_list_sorted[0]
+    print "\n Other options had differentials:"
+    print my_pick_list_sorted[1:]
 
 def computers_move():
 
-    user_input = int(raw_input('Computer played [number]?\n'))
+    user_input = int(raw_input('\nWhat number did the computer play?\n'))
       
     computers_last_move = random_pick_list.index(user_input)
 
@@ -58,5 +61,7 @@ def main_function():
     calculate_probabilities()
     computers_move()
     main_function()
+
+print "\nWelcome to the Multifly Solver. The following list shows the current differential between each pick's baseline win-chance and current win-chance. Always choose the first number on the list as your next move -- the other options/probabilities are shown just for interest. Then, after each round, input what the computer just played and the Solver will recalculate probabilities. \n"
 
 main_function()
