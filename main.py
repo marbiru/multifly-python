@@ -1,12 +1,15 @@
 my_pick_list = []
 
 for x in range(2,28):
-	my_pick_list.append([x,""])
+	my_pick_list.append([x,"",""])
 
 random_pick_list = []
 
 for x in range(2,28):
     random_pick_list.append(x)
+
+my_previous_moves = []
+computers_previous_moves = []
 
 def win_chance(my_pick):
     
@@ -28,15 +31,13 @@ def win_chance(my_pick):
 
     return win_fraction
 
-baseline_list = [0] * 26
-
 for x in range(2,28):
-    baseline_list[x-2] = win_chance(x)
+    my_pick_list[x-2][2] = win_chance(x)
 
 def calculate_probabilities():
 
-    for x in range(2,28):
-       difference_from_baseline = win_chance(x) - baseline_list[x-2]
+    for x in range(2,len(my_pick_list)+2):
+       difference_from_baseline = win_chance(x) - my_pick_list[x-2][2]
        my_pick_list[x-2][1] = round(difference_from_baseline, 2)
 
     def sort_by_prob(s):
@@ -44,15 +45,25 @@ def calculate_probabilities():
 
     my_pick_list_sorted = sorted(my_pick_list, key=sort_by_prob, reverse=True)
 
-    print "Your next move:"
+    print "\n Your next move:"
     print my_pick_list_sorted[0]
+    print "\n Your previous moves:"
+    print my_previous_moves
+    print "\n Computer's previous moves:"
+    print computers_previous_moves
     print "\n Other options had differentials:"
     print my_pick_list_sorted[1:]
+
+    my_previous_moves.append(my_pick_list_sorted[0][0])
+
+    my_pick_list.pop(0)
 
 def computers_move():
 
     user_input = int(raw_input('\nWhat number did the computer play?\n'))
-      
+    
+    computers_previous_moves.append(user_input)
+
     computers_last_move = random_pick_list.index(user_input)
 
     random_pick_list.pop(computers_last_move)
