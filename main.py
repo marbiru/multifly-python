@@ -72,7 +72,7 @@ def computers_move():
         if user_input in computers_previous_moves:
             print '\nYou\'ve entered that previously!'
             continue
-        elif user_input in range(2,27):
+        elif user_input in range(2,28):
             break
         else:
             print'\nThat doesn\'t seem right - the game uses only numbers 2 to 27'
