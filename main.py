@@ -62,14 +62,21 @@ def calculate_probabilities():
 
 def computers_move():
 
-    user_input = int(raw_input('\nWhat number did the computer play?\n'))
-
-    if user_input in computers_previous_moves:
-         user_input = int(raw_input('\nYou\'ve entered that previously! What number did the computer play this time?\n'))
-    elif user_input in range(2,27):
-        return user_input
-    else: 
-        user_input = int(raw_input('\nThat doesn\'t seem right. What number did the computer play?\n'))
+    while True:
+        try:
+            user_input = int(raw_input('\nWhat number did the computer play?\n'))
+        except ValueError:
+            print "That's not a number!"
+            continue
+        
+        if user_input in computers_previous_moves:
+            print '\nYou\'ve entered that previously!'
+            continue
+        elif user_input in range(2,27):
+            break
+        else:
+            print'\nThat doesn\'t seem right - the game uses only numbers 2 to 27'
+            continue
     
     computers_previous_moves.append(user_input)
 
