@@ -56,7 +56,9 @@ def calculate_probabilities():
 
     my_previous_moves.append(my_pick_list_sorted[0][0])
 
-    my_pick_list.pop(0)
+    my_pick_list_pop = my_pick_list.index(my_pick_list_sorted[0])
+
+    my_pick_list.pop(my_pick_list_pop)
 
 def computers_move():
 
